@@ -5,102 +5,125 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <EditText
-            android:id="@+id/emailAddress"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/field_email"
-            android:inputType="textEmailAddress"
-            android:autofillHints="emailAddress" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/field_password"
-            android:inputType="textPassword"
-            android:autofillHints="password" />
-
-        <EditText
-            android:id="@+id/passwordRetype"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/field_password_retype"
-            android:inputType="textPassword"
-            android:autofillHints="password" />
-
-        <EditText
-            android:id="@+id/nickname"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/field_nickname"
-            android:inputType="textPersonName"
-            android:importantForAutofill="no" />
-
-        <EditText
-            android:id="@+id/birthDate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/field_birth_date"
-            android:inputType="date"
-            android:autofillHints="birthDateFull" />
-
-        <RadioGroup
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:id="@+id/genderMale"
-                android:layout_width="wrap_content"
+            <EditText
+                android:id="@+id/emailAddress"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/field_gender_male" />
+                android:autofillHints="emailAddress"
+                android:ems="10"
+                android:hint="@string/field_email"
+                android:inputType="textEmailAddress" />
 
-            <RadioButton
-                android:id="@+id/genderFemale"
-                android:layout_width="wrap_content"
+            <EditText
+                android:id="@+id/password"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/field_gender_female" />
+                android:autofillHints="password"
+                android:ems="10"
+                android:hint="@string/field_password"
+                android:inputType="textPassword" />
 
-            <RadioButton
-                android:id="@+id/genderNone"
-                android:layout_width="wrap_content"
+            <EditText
+                android:id="@+id/passwordRetype"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:checked="true"
-                android:text="@string/field_gender_none" />
-        </RadioGroup>
+                android:autofillHints="password"
+                android:ems="10"
+                android:hint="@string/field_password_retype"
+                android:inputType="textPassword" />
 
-        <CheckBox
-            android:id="@+id/acceptTerms"
+            <EditText
+                android:id="@+id/nickname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/field_nickname"
+                android:importantForAutofill="no"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/birthDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="birthDateFull"
+                android:ems="10"
+                android:hint="@string/field_birth_date"
+                android:inputType="date" />
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/genderMale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/field_gender_male" />
+
+                <RadioButton
+                    android:id="@+id/genderFemale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/field_gender_female" />
+
+                <RadioButton
+                    android:id="@+id/genderNone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="true"
+                    android:text="@string/field_gender_none" />
+            </RadioGroup>
+
+            <CheckBox
+                android:id="@+id/acceptTerms"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/field_accept_terms" />
+
+            <CheckBox
+                android:id="@+id/acceptMarketingTerms"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/field_accept_marketing_terms" />
+
+            <Button
+                android:id="@+id/signUpButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/button_sign_up" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/loadingScreen"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/field_accept_terms" />
+            android:layout_height="match_parent"
+            android:background="@color/colorBlock"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
 
-        <CheckBox
-            android:id="@+id/acceptMarketingTerms"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/field_accept_marketing_terms" />
-
-        <Button
-            android:id="@+id/signUpButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/button_sign_up" />
-
-    </LinearLayout>
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
