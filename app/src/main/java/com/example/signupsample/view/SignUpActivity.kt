@@ -2,9 +2,16 @@ package com.example.signupsample.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.lifecycle.ViewModelProvider
 import com.example.signupsample.R
+import com.example.signupsample.viewmodel.SignUpViewModel
+import com.example.signupsample.viewmodel.ViewModelFactory
 
 class SignUpActivity : AppCompatActivity() {
+    private val viewModel : SignUpViewModel by lazy {
+        ViewModelProvider(this, ViewModelFactory()).get(SignUpViewModel::class.java)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
