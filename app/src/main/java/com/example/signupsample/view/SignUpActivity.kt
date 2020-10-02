@@ -4,13 +4,22 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import com.example.signupsample.R
+import com.example.signupsample.model.Gender
 import com.example.signupsample.viewmodel.SignUpViewModel
 import com.example.signupsample.viewmodel.ViewModelFactory
+import com.jakewharton.rxbinding4.widget.checkedChanges
+import com.jakewharton.rxbinding4.widget.textChanges
+import io.reactivex.rxjava3.disposables.CompositeDisposable
+import kotlinx.android.synthetic.main.activity_sign_up.*
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.*
 
 class SignUpActivity : AppCompatActivity() {
-    private val viewModel : SignUpViewModel by lazy {
+    private val viewModel: SignUpViewModel by lazy {
         ViewModelProvider(this, ViewModelFactory()).get(SignUpViewModel::class.java)
     }
+    private val disposables = CompositeDisposable()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,12 +37,44 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun bindData() {
-        // TODO: Field 값이 변할 때 ViewModel에 알려줌
+        viewModel.bind(
+            emailAddress.textChanges(),
+            password.textChanges(),
+            passwordRetype.textChanges(),
+            nickname.textChanges(),
+            birthDate.textChanges().map { s -> Optional.ofNullable(stringToDate(s)) },
+            gender.checkedChanges().map { id -> Optional.ofNullable(idToGender(id)) },
+            agreeTerms.checkedChanges(),
+            agreeMarketingTerms.checkedChanges()
+        )
 
-        // TODO: ViewModel로 부터 값을 읽어 UI 갱신
+        disposables.addAll(
+            viewModel.isSubmittable.subscribe { signUpButton.isEnabled = it }
+        )
     }
 
     private fun unbindData() {
-        // TODO: 누수 방지를 위해 바인딩 해제
+        viewModel.unbind()
+
+        if (!disposables.isDisposed) {
+            disposables.dispose()
+        }
+    }
+
+    private fun stringToDate(s: CharSequence): Date? {
+        return try {
+            SimpleDateFormat("yyyy.MM.dd.", Locale.ENGLISH).parse(s.toString())
+        } catch (e: ParseException) {
+            null
+        }
+    }
+
+    private fun idToGender(id: Int): Gender? {
+        return when (id) {
+            genderMale.id -> Gender.MALE
+            genderFemale.id -> Gender.FEMALE
+            genderNone.id -> Gender.NONE
+            else -> null
+        }
     }
 }
