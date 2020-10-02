@@ -60,6 +60,7 @@
                 android:inputType="date" />
 
             <RadioGroup
+                android:id="@+id/gender"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -88,16 +89,16 @@
             </RadioGroup>
 
             <CheckBox
-                android:id="@+id/acceptTerms"
+                android:id="@+id/agreeTerms"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/field_accept_terms" />
+                android:text="@string/field_agree_terms" />
 
             <CheckBox
-                android:id="@+id/acceptMarketingTerms"
+                android:id="@+id/agreeMarketingTerms"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/field_accept_marketing_terms" />
+                android:text="@string/field_agree_marketing_terms" />
 
             <Button
                 android:id="@+id/signUpButton"

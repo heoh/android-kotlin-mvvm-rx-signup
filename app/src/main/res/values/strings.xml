@@ -9,7 +9,7 @@
     <string name="field_gender_male">남성</string>
     <string name="field_gender_female">여성</string>
     <string name="field_gender_none">선택 안 함</string>
-    <string name="field_accept_terms">필수 약관 동의</string>
-    <string name="field_accept_marketing_terms">마케팅 약관 동의</string>
+    <string name="field_agree_terms">필수 약관 동의</string>
+    <string name="field_agree_marketing_terms">마케팅 약관 동의</string>
     <string name="button_sign_up">회원가입</string>
 </resources>
