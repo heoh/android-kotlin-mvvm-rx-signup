@@ -1,5 +1,6 @@
 package com.example.signupsample.view
 
+import android.app.DatePickerDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
@@ -7,12 +8,14 @@ import com.example.signupsample.R
 import com.example.signupsample.model.Gender
 import com.example.signupsample.viewmodel.SignUpViewModel
 import com.example.signupsample.viewmodel.ViewModelFactory
+import com.jakewharton.rxbinding4.view.clicks
 import com.jakewharton.rxbinding4.widget.checkedChanges
 import com.jakewharton.rxbinding4.widget.textChanges
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import java.text.ParseException
 import java.text.SimpleDateFormat
+import java.time.LocalDate
 import java.util.*
 
 class SignUpActivity : AppCompatActivity() {
@@ -49,7 +52,8 @@ class SignUpActivity : AppCompatActivity() {
         )
 
         disposables.addAll(
-            viewModel.isSubmittable.subscribe { signUpButton.isEnabled = it }
+            viewModel.isSubmittable.subscribe { signUpButton.isEnabled = it },
+            birthDate.clicks().subscribe { showBirthDatePicker() }
         )
     }
 
@@ -59,6 +63,15 @@ class SignUpActivity : AppCompatActivity() {
         if (!disposables.isDisposed) {
             disposables.dispose()
         }
+    }
+
+    private fun showBirthDatePicker() {
+        val now = LocalDate.now()
+        val dialog = DatePickerDialog(this, { _, year, month, dayOfMonth ->
+            val text = "%d.%02d.%02d.".format(year, month + 1, dayOfMonth)
+            birthDate.setText(text)
+        }, now.year, now.month.value - 1, now.dayOfMonth)
+        dialog.show()
     }
 
     private fun stringToDate(s: CharSequence): Date? {
