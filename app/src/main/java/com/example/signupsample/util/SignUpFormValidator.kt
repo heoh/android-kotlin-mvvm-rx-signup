@@ -19,7 +19,7 @@ class SignUpFormValidator(
     }
 
     fun validatePassword(): Boolean {
-        val pattern = """^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,}).*$""".toRegex()
+        val pattern = """^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}$""".toRegex()
         return pattern.matches(password)
     }
 
@@ -28,7 +28,7 @@ class SignUpFormValidator(
     }
 
     fun validateNickname(): Boolean {
-        val pattern = """^(?=.{8,30}).*$""".toRegex()
+        val pattern = """^.{8,30}""".toRegex()
         return pattern.matches(nickname)
     }
 
