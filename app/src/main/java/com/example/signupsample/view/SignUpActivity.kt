@@ -1,6 +1,7 @@
 package com.example.signupsample.view
 
 import android.app.DatePickerDialog
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -28,7 +29,7 @@ class SignUpActivity : AppCompatActivity() {
     private val viewModel: SignUpViewModel by lazy {
         ViewModelProvider(this, ViewModelFactory()).get(SignUpViewModel::class.java)
     }
-    private val disposables = CompositeDisposable()
+    private var disposables = CompositeDisposable()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -102,7 +103,10 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun showUserInfo(user: User) {
-        // TODO: 구현 필요
+        val intent = Intent(this, SignUpResultActivity::class.java).apply {
+            putExtra(SignUpResultActivity.USER, user)
+        }
+        startActivity(intent)
     }
 
     private fun showMessage(message: CharSequence) {

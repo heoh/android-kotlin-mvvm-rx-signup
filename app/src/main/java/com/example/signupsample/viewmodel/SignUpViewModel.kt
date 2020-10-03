@@ -56,7 +56,7 @@ class SignUpViewModel : ViewModel() {
         val user = User(
             emailAddress = fields.emailAddress.toString(),
             password = fields.password.toString(),
-            nickname = fields.toString(),
+            nickname = fields.nickname.toString(),
             birthDate = fields.birthDate!!,
             gender = fields.gender!!,
             hasAgreedToTerms = fields.agreeTerms,
