@@ -69,11 +69,8 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun unbindData() {
+        disposables.clear()
         viewModel.unbind()
-
-        if (!disposables.isDisposed) {
-            disposables.dispose()
-        }
     }
 
     private fun showBirthDatePicker() {

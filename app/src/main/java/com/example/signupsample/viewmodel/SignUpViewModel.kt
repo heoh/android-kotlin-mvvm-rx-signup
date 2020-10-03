@@ -45,9 +45,7 @@ class SignUpViewModel : ViewModel() {
     }
 
     fun unbind() {
-        if (!disposables.isDisposed) {
-            disposables.dispose()
-        }
+        disposables.clear()
     }
 
     fun submit() {
