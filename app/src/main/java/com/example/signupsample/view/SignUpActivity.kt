@@ -3,9 +3,12 @@ package com.example.signupsample.view
 import android.app.DatePickerDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.example.signupsample.R
+import com.example.signupsample.api.Response
 import com.example.signupsample.model.Gender
+import com.example.signupsample.model.User
 import com.example.signupsample.viewmodel.SignUpViewModel
 import com.example.signupsample.viewmodel.ViewModelFactory
 import com.jakewharton.rxbinding4.view.clicks
@@ -53,7 +56,9 @@ class SignUpActivity : AppCompatActivity() {
 
         disposables.addAll(
             viewModel.isSubmittable.subscribe { signUpButton.isEnabled = it },
-            birthDate.clicks().subscribe { showBirthDatePicker() }
+            viewModel.submissionResponse.subscribe { handleSubmission(it) },
+            birthDate.clicks().subscribe { showBirthDatePicker() },
+            signUpButton.clicks().subscribe { viewModel.submit() }
         )
     }
 
@@ -72,6 +77,10 @@ class SignUpActivity : AppCompatActivity() {
             birthDate.setText(text)
         }, now.year, now.month.value - 1, now.dayOfMonth)
         dialog.show()
+    }
+
+    private fun handleSubmission(response: Response<User>) {
+        Toast.makeText(this, "Response: " + response.statusCode, Toast.LENGTH_SHORT).show()
     }
 
     private fun stringToDate(s: CharSequence): Date? {
