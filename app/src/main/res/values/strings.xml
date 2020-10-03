@@ -3,7 +3,7 @@
 
     <string name="field_email">이메일</string>
     <string name="field_password">비밀번호</string>
-    <string name="field_password_retype">비밀번호 재입력</string>
+    <string name="field_confirm_password">비밀번호 재입력</string>
     <string name="field_nickname">닉네임</string>
     <string name="field_birth_date">생년월일</string>
     <string name="field_gender_male">남성</string>
@@ -11,7 +11,7 @@
     <string name="field_gender_none">선택 안 함</string>
     <string name="field_agree_terms">필수 약관 동의</string>
     <string name="field_agree_marketing_terms">마케팅 약관 동의</string>
-    <string name="button_sign_up">회원가입</string>
+    <string name="button_submit">회원가입</string>
 
     <string name="message_sign_up_failed_by_age">만 14세 미만은 회원 가입할 수 없어요.</string>
     <string name="message_sign_up_already_exists_user">이미 가입된 이메일이에요.</string>

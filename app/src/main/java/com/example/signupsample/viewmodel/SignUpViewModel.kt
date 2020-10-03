@@ -25,7 +25,7 @@ class SignUpViewModel : ViewModel() {
     fun bind(
         emailAddress: Observable<CharSequence>,
         password: Observable<CharSequence>,
-        passwordRetype: Observable<CharSequence>,
+        confirmPassword: Observable<CharSequence>,
         nickname: Observable<CharSequence>,
         birthDate: Observable<Optional<LocalDate>>,
         gender: Observable<Optional<Gender>>,
@@ -35,7 +35,7 @@ class SignUpViewModel : ViewModel() {
         disposables.addAll(
             emailAddress.subscribe { fields.emailAddress = it; update() },
             password.subscribe { fields.password = it; update() },
-            passwordRetype.subscribe { fields.passwordRetype = it; update() },
+            confirmPassword.subscribe { fields.confirmPassword = it; update() },
             nickname.subscribe { fields.nickname = it; update() },
             birthDate.subscribe { fields.birthDate = it.orElse(null); update() },
             gender.subscribe { fields.gender = it.orElse(null); update() },

@@ -52,7 +52,7 @@ class SignUpActivity : AppCompatActivity() {
         viewModel.bind(
             emailAddress.textChanges(),
             password.textChanges(),
-            passwordRetype.textChanges(),
+            confirmPassword.textChanges(),
             nickname.textChanges(),
             birthDate.textChanges().map { s -> Optional.ofNullable(stringToDate(s)) },
             gender.checkedChanges().map { id -> Optional.ofNullable(idToGender(id)) },
@@ -65,7 +65,7 @@ class SignUpActivity : AppCompatActivity() {
             viewModel.isLoading.subscribe { updateLoadingState(it) },
             viewModel.submissionResponse.subscribe { handleSubmission(it) },
             birthDate.clicks().subscribe { showBirthDatePicker() },
-            signUpButton.clicks().subscribe { viewModel.submit() }
+            submitButton.clicks().subscribe { viewModel.submit() }
         )
     }
 
@@ -84,7 +84,7 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun updateSubmittableState(submittable: Boolean) {
-        signUpButton.isEnabled = submittable
+        submitButton.isEnabled = submittable
     }
 
     private fun updateLoadingState(loading: Boolean) {

@@ -7,7 +7,7 @@ import java.time.LocalDate
 class SignUpFormValidator(
     var emailAddress: CharSequence = "",
     var password: CharSequence = "",
-    var passwordRetype: CharSequence = "",
+    var confirmPassword: CharSequence = "",
     var nickname: CharSequence = "",
     var birthDate: LocalDate? = null,
     var gender: Gender? = null,
@@ -23,8 +23,8 @@ class SignUpFormValidator(
         return pattern.matches(password)
     }
 
-    fun validatePasswordRetype(): Boolean {
-        return password.toString().contentEquals(passwordRetype)
+    fun validateConfirmPassword(): Boolean {
+        return password.toString().contentEquals(confirmPassword)
     }
 
     fun validateNickname(): Boolean {
@@ -54,7 +54,7 @@ class SignUpFormValidator(
     fun validate(): Boolean {
         return (validateEmailAddress() &&
                 validatePassword() &&
-                validatePasswordRetype() &&
+                validateConfirmPassword() &&
                 validateNickname() &&
                 validateBirthDate() &&
                 validateGender() &&

@@ -33,12 +33,12 @@
                 android:inputType="textPassword" />
 
             <EditText
-                android:id="@+id/passwordRetype"
+                android:id="@+id/confirmPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:autofillHints="password"
                 android:ems="10"
-                android:hint="@string/field_password_retype"
+                android:hint="@string/field_confirm_password"
                 android:inputType="textPassword" />
 
             <EditText
@@ -102,10 +102,10 @@
                 android:text="@string/field_agree_marketing_terms" />
 
             <Button
-                android:id="@+id/signUpButton"
+                android:id="@+id/submitButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/button_sign_up" />
+                android:text="@string/button_submit" />
 
         </LinearLayout>
 
