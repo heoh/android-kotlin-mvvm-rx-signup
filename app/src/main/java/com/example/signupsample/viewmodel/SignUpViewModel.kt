@@ -11,6 +11,7 @@ import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.subjects.BehaviorSubject
 import io.reactivex.rxjava3.subjects.PublishSubject
+import java.time.LocalDate
 import java.util.*
 
 class SignUpViewModel : ViewModel() {
@@ -25,7 +26,7 @@ class SignUpViewModel : ViewModel() {
         password: Observable<CharSequence>,
         passwordRetype: Observable<CharSequence>,
         nickname: Observable<CharSequence>,
-        birthDate: Observable<Optional<Date>>,
+        birthDate: Observable<Optional<LocalDate>>,
         gender: Observable<Optional<Gender>>,
         agreeTerms: Observable<Boolean>,
         agreeMarketingTerms: Observable<Boolean>

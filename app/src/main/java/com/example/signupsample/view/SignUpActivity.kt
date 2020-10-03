@@ -16,9 +16,9 @@ import com.jakewharton.rxbinding4.widget.checkedChanges
 import com.jakewharton.rxbinding4.widget.textChanges
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_sign_up.*
-import java.text.ParseException
-import java.text.SimpleDateFormat
 import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.time.format.DateTimeParseException
 import java.util.*
 
 class SignUpActivity : AppCompatActivity() {
@@ -83,10 +83,11 @@ class SignUpActivity : AppCompatActivity() {
         Toast.makeText(this, "Response: " + response.statusCode, Toast.LENGTH_SHORT).show()
     }
 
-    private fun stringToDate(s: CharSequence): Date? {
+    private fun stringToDate(s: CharSequence): LocalDate? {
+        val formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd.")
         return try {
-            SimpleDateFormat("yyyy.MM.dd.", Locale.ENGLISH).parse(s.toString())
-        } catch (e: ParseException) {
+            LocalDate.parse(s, formatter)
+        } catch (e: DateTimeParseException) {
             null
         }
     }

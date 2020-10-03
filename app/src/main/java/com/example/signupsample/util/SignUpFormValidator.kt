@@ -2,14 +2,14 @@ package com.example.signupsample.util
 
 import android.util.Patterns
 import com.example.signupsample.model.Gender
-import java.util.*
+import java.time.LocalDate
 
 class SignUpFormValidator(
     var emailAddress: CharSequence = "",
     var password: CharSequence = "",
     var passwordRetype: CharSequence = "",
     var nickname: CharSequence = "",
-    var birthDate: Date? = null,
+    var birthDate: LocalDate? = null,
     var gender: Gender? = null,
     var agreeTerms: Boolean = false,
     var agreeMarketingTerms: Boolean = false
