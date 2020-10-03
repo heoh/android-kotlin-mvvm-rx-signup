@@ -16,6 +16,7 @@ import java.util.*
 
 class SignUpViewModel : ViewModel() {
     val isSubmittable: Observable<Boolean> = BehaviorSubject.createDefault(false)
+    val isLoading: Observable<Boolean> = BehaviorSubject.createDefault(false)
     val submissionResponse: Observable<Response<User>> = PublishSubject.create<Response<User>>()
 
     private val fields = SignUpFormValidator()
@@ -64,7 +65,13 @@ class SignUpViewModel : ViewModel() {
             hasAgreedToMarketingTerms = fields.agreeMarketingTerms
         )
 
+        if (isLoading is BehaviorSubject<Boolean>) {
+            isLoading.onNext(true)
+        }
         UserAPI.create(user).observeOn(AndroidSchedulers.mainThread()).subscribe {
+            if (isLoading is BehaviorSubject<Boolean>) {
+                isLoading.onNext(false)
+            }
             if (submissionResponse is PublishSubject<Response<User>>) {
                 submissionResponse.onNext(it)
             }

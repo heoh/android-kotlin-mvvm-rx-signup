@@ -3,6 +3,7 @@ package com.example.signupsample.view
 import android.app.DatePickerDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.example.signupsample.R
@@ -59,6 +60,7 @@ class SignUpActivity : AppCompatActivity() {
 
         disposables.addAll(
             viewModel.isSubmittable.subscribe { updateSubmittableState(it) },
+            viewModel.isLoading.subscribe { updateLoadingState(it) },
             viewModel.submissionResponse.subscribe { handleSubmission(it) },
             birthDate.clicks().subscribe { showBirthDatePicker() },
             signUpButton.clicks().subscribe { viewModel.submit() }
@@ -84,6 +86,13 @@ class SignUpActivity : AppCompatActivity() {
 
     private fun updateSubmittableState(submittable: Boolean) {
         signUpButton.isEnabled = submittable
+    }
+
+    private fun updateLoadingState(loading: Boolean) {
+        when (loading) {
+            true -> loadingScreen.visibility = View.VISIBLE
+            false -> loadingScreen.visibility = View.GONE
+        }
     }
 
     private fun handleSubmission(response: Response<User>) {
