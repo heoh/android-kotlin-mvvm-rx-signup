@@ -58,7 +58,7 @@ class SignUpActivity : AppCompatActivity() {
         )
 
         disposables.addAll(
-            viewModel.isSubmittable.subscribe { signUpButton.isEnabled = it },
+            viewModel.isSubmittable.subscribe { updateSubmittableState(it) },
             viewModel.submissionResponse.subscribe { handleSubmission(it) },
             birthDate.clicks().subscribe { showBirthDatePicker() },
             signUpButton.clicks().subscribe { viewModel.submit() }
@@ -80,6 +80,10 @@ class SignUpActivity : AppCompatActivity() {
             birthDate.setText(text)
         }, now.year, now.month.value - 1, now.dayOfMonth)
         dialog.show()
+    }
+
+    private fun updateSubmittableState(submittable: Boolean) {
+        signUpButton.isEnabled = submittable
     }
 
     private fun handleSubmission(response: Response<User>) {
