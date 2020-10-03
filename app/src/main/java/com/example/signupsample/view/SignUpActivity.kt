@@ -1,10 +1,10 @@
 package com.example.signupsample.view
 
 import android.app.DatePickerDialog
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.signupsample.R
 import com.example.signupsample.api.Response
@@ -18,6 +18,7 @@ import com.jakewharton.rxbinding4.widget.checkedChanges
 import com.jakewharton.rxbinding4.widget.textChanges
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_sign_up.*
+import java.net.HttpURLConnection
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.time.format.DateTimeParseException
@@ -96,7 +97,24 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun handleSubmission(response: Response<User>) {
-        Toast.makeText(this, "Response: " + response.statusCode, Toast.LENGTH_SHORT).show()
+        if (response.statusCode == HttpURLConnection.HTTP_OK) {
+            response.body?.let { showUserInfo(it) }
+        } else {
+            response.message?.let { showMessage(getStringByName(it)) }
+        }
+    }
+
+    private fun showUserInfo(user: User) {
+        // TODO: 구현 필요
+    }
+
+    private fun showMessage(message: CharSequence) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+    }
+
+    private fun getStringByName(name: CharSequence): CharSequence {
+        val resId = resources.getIdentifier(name.toString(), "string", packageName)
+        return getString(resId)
     }
 
     private fun stringToDate(s: CharSequence): LocalDate? {
