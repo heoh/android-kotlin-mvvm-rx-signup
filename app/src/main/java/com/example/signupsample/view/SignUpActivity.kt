@@ -9,6 +9,7 @@ import com.example.signupsample.R
 import com.example.signupsample.api.Response
 import com.example.signupsample.model.Gender
 import com.example.signupsample.model.User
+import com.example.signupsample.repository.UserRepository
 import com.example.signupsample.viewmodel.SignUpViewModel
 import com.example.signupsample.viewmodel.ViewModelFactory
 import com.jakewharton.rxbinding4.view.clicks
@@ -30,6 +31,8 @@ class SignUpActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
+
+        UserRepository.init(this.applicationContext)
     }
 
     override fun onResume() {
